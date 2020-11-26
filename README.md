@@ -42,15 +42,15 @@ Following the completion of each course, data was compiled into an [excel file](
   
 Excel Tab| Content
 --------------------------- | -----------------------------------------------------
-1. F2018-Pre                | Data collected from pre-course survey in guided format (2018)
-2. F2018-Post               | Data collected from post-course survey in guided format (2018)
-3. F2019-Pre                | Data collected from pre-course survey in autonomous format (2019)
-4. F2019-Post               | Data collected from post-course survey in autonomous format (2019)
-5. 2018 Combined            | Pre-course and post-course data combined from guided format (2018)
-6. 2019 Combined            | Pre-course and post-course data combined from autonomous format (2019)
-7. All Data                 | Combination of guided and autonomous format data collection (2018/2019)
-8. 18.19 Confidence.App     | Combination of pre/post-course guided and autonomous format data collection (2018/2019) -confidence and applicability measures only
-9. 18.19 CURE               | Combination of post-course guided and autonomous format data collection (2018/2019) -perception of CURE measures only
+F2018-Pre                | Data collected from pre-course survey in guided format (2018)
+F2018-Post               | Data collected from post-course survey in guided format (2018)
+F2019-Pre                | Data collected from pre-course survey in autonomous format (2019)
+F2019-Post               | Data collected from post-course survey in autonomous format (2019)
+2018 Combined            | Pre-course and post-course data combined from guided format (2018)
+2019 Combined            | Pre-course and post-course data combined from autonomous format (2019)
+All Data                 | Combination of guided and autonomous format data collection (2018/2019)
+18.19 Confidence.App     | Combination of pre/post-course guided and autonomous format data collection (2018/2019) -confidence and applicability measures only
+18.19 CURE               | Combination of post-course guided and autonomous format data collection (2018/2019) -perception of CURE measures only
 
 
 Data was then formatted for statistical analysis in R as a [CSV file](Models.csv). Annotated [statistical code](ICB_SkillBuilding_CURE.Rmd) was written in RMarkdown and results were written to a [PDF file](ICB_SkillBuilding_CURE.pdf).
