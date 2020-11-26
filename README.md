@@ -4,6 +4,7 @@ This repository holds all supplemental files for "Addressing the unique qualitie
 Abby E. Beatty, Cissy J. Ballen, Emily P. Driessen, Tonia S. Schwartz & Rita M. Graze
 
 Department of Biological Sciences, Auburn University, Auburn, AL 36849
+
 Corresponding Author: aeb0084@auburn.edu
 
 
