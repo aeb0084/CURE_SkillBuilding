@@ -32,3 +32,11 @@ Raw Data                             | [All Data Excel Workbook](Final.Data.Set.
 Statistics                           | [Statistical Code](ICB_SkillBuilding_CURE.Rmd)
 &nbsp;                               | [Statistical Code Output](ICB_SkillBuilding_CURE.pdf)
 
+## Detailed Explination of Files
+
+A course-based undergraduate research experience (CURE) was completed in two iteractions of an upper-level molecular biology course. In one iteration, students completed a skill-building portion in which students completed lab exercises with known outcomes in order to gain skills necessary for completing an independent reserach project prior to beginning their independent work. In the second iteration, student proceeded with their independent research experience without completing skill-building exercises. Differences and similiarites between iterations can be seen above in **Supplemental Figure 1**.
+
+Prior to participation in the study, students were provided an [information letter](Information_Letter_2019.docx) detailing their role in the reserach. In each iteraction, students were given a [pre-course survey](Pre_Survey_2019_edit.pdf) during the first week of class measuring student confidence and perceived applicabilty of the course to their future careers. Each iteraction then completed a semester-long undergraduate research experience in collaboration with a reserach laboratory on campus, either with or in the absence of a skill-building portion. During the last week of class, students were given a [post-course survey](Post_Survey_2019_edit.pdf) which repeated all questions from the pre-course survey, and asked additional questions on student perceptions of the CURE format they were exposed to.
+
+Following the completion of each course, data was compiled into an [excel file](Final.Data.Set.xlsx) that has worksheets for each implementation, combined implementations, and data sorted by construct (perceptions of applicability, confidence, and CURE format. Data was then formatted for statistical analysis in R as a [CSV file](Models.csv). Annotated [statistical code](ICB_SkillBuilding_CURE.Rmd) was written in RMarkdown and results were written to a [PDF file](ICB_SkillBuilding_CURE.pdf).
+
