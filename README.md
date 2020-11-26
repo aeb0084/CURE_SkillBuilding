@@ -14,11 +14,8 @@ This repository holds all supplemental files for "Addressing the unique qualitie
 ### Quick Key to File Directory: Detailed Descriptions of file use can be found below.
 File Type | &nbsp;
 ------------------------------------ | -----------------------------------------------------
-Protocols and Interactive Worksheets | [Molecular Protocol](Brown.Anole.qPCR.Protocol.pdf) 
-&nbsp;                               | [Appendix A: Primer Design](Appendix_A.Primer_Design.txt)
-&nbsp;                               | [Appendix B: Standard Preparation](Appendix_B.Standard.Prep.Worksheet.xlsx)
-&nbsp;                               | [Appendix C: qPCR Calculations](Appendix_C.qPCR.Calculations.xlsx)
-Raw Data                             | [Plate 1](qPCR_Plate_10_24.zip)
-&nbsp;                               | [Plate 2](qPCR_Plate_2.zip)
-Final Data                           | [IGFs and EEF2 Final](combined.data.final.csv)
-&nbsp;                               | [IGF1 Undiluted](undiluted.samples.csv)
+Survey Instrumets                    | [Information Letter](Information Letter_2019_nohighlighting.docx) 
+&nbsp;                               | [Pre-Course Survey](Pre_Survey_2019_edit.pdf)
+&nbsp;                               | [Post-Course Survey](Post_Survey_2019_edit.pdf)
+Raw Data                             | [All Data Excel Workbook](Final.Data.Set.xlsx)
+&nbsp;                               | [CSV File for Coding](Models.csv)
