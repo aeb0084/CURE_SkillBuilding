@@ -1,0 +1,265 @@
+---
+title: "CURE Combined"
+author: "Abby Beatty"
+date: "March 15, 2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+#Read in packages and SE function
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
+library(ggplot2)
+library(multcomp)
+library(nlme)
+library(grid)
+library(Rmisc)
+library(gridExtra)
+library(emmeans)
+library(cowplot)
+
+```
+
+#Summary Function
+```{r}
+summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=TRUE,
+                      conf.interval=.95, .drop=TRUE) {
+    library(plyr)
+    # New version of length which can handle NA's: if na.rm==T, don't count them
+    length2 <- function (x, na.rm=TRUE) {
+        if (na.rm) sum(!is.na(x))
+        else       length(x)
+    }
+    # This does the summary. For each group's data frame, return a vector with
+    # N, mean, and sd
+    datac <- ddply(data, groupvars, .drop=.drop,
+      .fun = function(xx, col) {
+        c(N    = length2(xx[[col]], na.rm=na.rm),
+          mean = mean   (xx[[col]], na.rm=na.rm),
+          sd   = sd     (xx[[col]], na.rm=na.rm)
+        )
+      },
+      measurevar
+    )
+    # Rename the "mean" column    
+    datac <- rename(datac, c("mean" = measurevar))
+    datac$se <- datac$sd / sqrt(datac$N)  # Calculate standard error of the mean
+    # Confidence interval multiplier for standard error
+    # Calculate t-statistic for confidence interval: 
+    # e.g., if conf.interval is .95, use .975 (above/below), and use df=N-1
+    ciMult <- qt(conf.interval/2 + .5, datac$N-1)
+    datac$ci <- datac$se * ciMult
+    return(datac)
+    }
+
+```
+
+
+##18.19 post data: Confidence Measures 
+```{r}
+model=read.csv("Models.csv")
+model$Experience=factor(model$Experience, levels=c("Guided", "Autonomous"))
+model$Time=factor(model$Time, levels=c("Pre", "Post"))
+conf=subset(model, Skill == "Confidence")
+
+conf.lm=lm(Score~ Experience*Subskill, data=conf, na.action=na.omit)
+anova(conf.lm)
+conf.means=emmeans(conf.lm, list(pairwise ~ Experience|Subskill), adjust = "tukey")
+conf.means
+
+
+conf.plot=plot(conf.means, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen", xlab="Confidence" )+
+  theme_bw() 
+
+
+```
+
+##18.19 post data: Applicabilty Measures 
+```{r}
+app=subset(model, Skill == "Applicability")
+
+app.lm=lm(Score~Experience*Subskill, data=app, na.action=na.omit)
+anova(app.lm)
+app.means=emmeans(app.lm, list(pairwise ~ Experience|Subskill), cov.keep="Year", adjust = "tukey")
+app.means
+
+
+app.plot=plot(app.means, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen", xlab="Applicability") +
+  theme_bw() 
+
+
+app.plot
+
+```
+
+##18.19 post data: CURE Measures 
+```{r}
+cure=subset(model, Skill == "CURE")
+
+cure.lm=lm(Score~Experience*Subskill, data=cure, na.action=na.omit)
+anova(cure.lm)
+cure.means=emmeans(cure.lm, list(pairwise ~ Experience|Subskill), adjust = "tukey")
+cure.means
+
+
+plot(cure.means, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" )
+
+#subset only significant ones for plot
+cure.sub=subset(cure, Subskill == "Time"| Subskill == "Benefit"| Subskill == "Recommend" | Subskill == "In.engage" |Subskill == "Discovery")
+
+curesub.lm=lm(Score~Experience*Subskill, data=cure.sub, na.action=na.omit)
+anova(curesub.lm)
+cure.sub.means=emmeans(curesub.lm, list(pairwise ~ Experience|Subskill), adjust = "tukey")
+cure.sub.means
+
+cure.plot=plot(cure.sub.means, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen", xlab="Perceptions of the CURE" )+
+  theme_bw() 
+
+
+```
+#draw multi panel plot 
+```{r}
+p=ggdraw() +
+  draw_plot(app.plot, x = 0, y = 0.66, width = 0.6, height = .28) +
+  draw_plot(conf.plot, x = 0, y = .33, width = 0.8, height = .28)+
+  draw_plot(cure.plot, x = 0, y = 0.0, width = 1, height = 0.28) +
+   draw_plot_label(label = c("C", "B","A"), size = 15,
+                  x = c(0, 0 ,0), y = c(0.33, 0.66,0.99)) 
+  
+
+p2= p + theme(plot.margin=unit(c(15,15,15,15),"mm")) 
+
+ggsave(p2, file="multipanel.png", width=10, height=12, dpi=600)
+
+p2
+```
+
+##18.19 pre vs post data: Confidence Measures 
+```{r}
+#Pre and post comparison in 2018
+conf.18=subset(conf, Experience == "Guided")
+conf.18=subset(conf.18, Subskill != "Weakness")
+
+conf.18pp=lme(Score~as.factor(Time)*Subskill, random= ~1|ID, data=conf.18, na.action=na.omit)
+
+anova(conf.18pp)
+confmeans18=emmeans(conf.18pp, list(pairwise ~ Time|Subskill), adjust = "tukey")
+confmeans18
+
+plot(confmeans18, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" )
+
+#Pre and post comparison in 2019
+#conf.19=subset(conf, Experience == "Authentic")
+#conf.19=subset(conf.19, Subskill != "Weakness")
+
+#conf.19pp=lme(Score~as.factor(Time)*Subskill, random= ~1|ID, data=conf.19, na.action=na.omit)
+
+#anova(conf.19pp)
+#confmeans19=emmeans(conf.19pp, list(pairwise ~ Time|Subskill), adjust = "tukey")
+#confmeans19
+
+#plot(confmeans19, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" )
+
+```
+
+##18.19 pre vs post data: Applicability Measures 
+```{r}
+#Pre and post comparison in 2018
+app.18=subset(app, Experience == "Guided")
+app.18=subset(app.18, Subskill != "Weakness")
+
+app.18pp=lme(Score~Time*Subskill, random= ~1|ID, data=app.18, na.action=na.omit)
+
+anova(app.18pp)
+appmeans18=emmeans(app.18pp, list(pairwise ~ Time|Subskill), adjust = "tukey")
+appmeans18
+
+plot(appmeans18, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" )
+
+
+#Pre and post comparison in 2019
+app.19=subset(app, Experience == "Authentic")
+app.19=subset(app.19, Subskill != "Weakness")
+
+#app.19pp=lme(Score~Time*Subskill, random= ~1|ID, data=app.19, na.action=na.omit)
+
+#anova(app.19pp)
+#appmeans19=emmeans(app.19pp, list(pairwise ~ Time|Subskill), adjust = "tukey")
+#appmeans19
+
+#plot(appmeans19, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" ) 
+
+```
+
+#pre-post combined
+
+```{r}
+app.pp=lme(Score~Time*Subskill, random= ~1|ID, data=app, na.action=na.omit)
+
+anova(app.pp)
+appmeans=emmeans(app.pp, list(pairwise ~ Time|Subskill), adjust = "tukey")
+appmeans
+
+plot(appmeans, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" ) 
+
+conf.w=subset(conf, Subskill != "Weakness")
+con.pp=lme(Score~Time*Subskill, random= ~1|ID, data=conf.w, na.action=na.omit)
+
+anova(con.pp)
+conmeans=emmeans(con.pp, list(pairwise ~ Time|Subskill), adjust = "tukey")
+conmeans
+
+plot(conmeans, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" ) 
+
+```
+
+#multipanel plot of pre-post 
+```{r}
+des=subset(conf, Subskill == "Design")
+des.lm=lme(Score~Time*Experience, random= ~1|ID, data=des, na.action=na.omit)
+des.means=emmeans(des.lm, list(pairwise ~ Time|Experience), adjust = "tukey")
+des.pl=plot(des.means, by = "Experience", comparisons = TRUE, horizontal = FALSE, color="darkgreen" ) 
+
+per=subset(conf, Subskill == "Perform")
+per.lm=lme(Score~Time*Experience, random= ~1|ID, data=per, na.action=na.omit)
+per.means=emmeans(per.lm, list(pairwise ~ Time|Experience), adjust = "tukey")
+per.pl=plot(per.means, by = "Experience", comparisons = TRUE, horizontal = FALSE, color="darkgreen" ) 
+
+nb=subset(conf, Subskill == "Notebook")
+nb.lm=lme(Score~Time*Experience, random= ~1|ID, data=nb, na.action=na.omit)
+nb.means=emmeans(nb.lm, list(pairwise ~ Time|Experience), adjust = "tukey")
+nb.pl=plot(nb.means, by = "Experience", comparisons = TRUE, horizontal = FALSE, color="darkgreen" ) 
+
+dis=subset(app, Subskill == "Discovery")
+dis.lm=lme(Score~Time*Experience, random= ~1|ID, data=dis, na.action=na.omit)
+dis.means=emmeans(dis.lm, list(pairwise ~ Time|Experience), adjust = "tukey")
+dis.pl=plot(dis.means, by = "Experience", comparisons = TRUE, horizontal = FALSE, color="darkgreen" ) 
+
+sk=subset(app, Subskill == "Skills")
+sk.lm=lme(Score~Time*Experience, random= ~1|ID, data=sk, na.action=na.omit)
+sk.means=emmeans(sk.lm, list(pairwise ~ Time|Experience), adjust = "tukey")
+sk.pl=plot(sk.means, by = "Experience", comparisons = TRUE, horizontal = FALSE, color="darkgreen" ) 
+
+ed=subset(app, Subskill == "Everyday")
+ed.lm=lme(Score~Time*Experience, random= ~1|ID, data=ed, na.action=na.omit)
+ed.means=emmeans(ed.lm, list(pairwise ~ Time|Experience), adjust = "tukey")
+ed.pl=plot(ed.means, by = "Experience", comparisons = TRUE, horizontal = FALSE, color="darkgreen" ) 
+
+p3=ggdraw() +
+  draw_plot(ed.pl, x = 0.66, y = 0.5, width = 0.33, height = .4) +
+  draw_plot(sk.pl, x = 0.33, y = 0.5, width = 0.33, height = .4) +
+  draw_plot(dis.pl, x = 0, y = 0.5, width = 0.33, height = .4) +
+  draw_plot(nb.pl, x = 0.66, y = 0, width = 0.33, height = .4)+
+  draw_plot(des.pl, x = 0.33, y = 0, width = 0.33, height = 0.4) +
+  draw_plot(per.pl, x = 0, y = 0, width = 0.33, height = 0.4) +
+
+  theme(plot.margin=unit(c(15,15,15,15),"mm")) 
+
+ggsave(p3, file="pre.post.panel.png", width=12, height=8, dpi=600)
+
+p3
+
+```
+
+
+
