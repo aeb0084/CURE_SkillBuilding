@@ -15,6 +15,8 @@ Corresponding Author: aeb0084@auburn.edu
 ### Supplemental Figures
 <img src="SuppFig1.png" width="600">
 
+**Supplemental Figure 1**: Detailed Research Design. The presented problem, student goals, project implementation and timelines are displayed in both the guided and autonomous frameworks.  Green boxes highlight differences between the two laboratory learning experiences, while gray boxes show similarities.
+
 
 ### Quick Key to File Directory: Detailed Descriptions of file use can be found below.
 File Type | &nbsp;
