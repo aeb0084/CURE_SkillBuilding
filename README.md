@@ -24,10 +24,11 @@ Corresponding Author: aeb0084@auburn.edu
 ## Quick Key to File Directory: Detailed Descriptions of file use can be found below.
 File Type | &nbsp;
 ------------------------------------ | -----------------------------------------------------
-Survey Instrumets                    | [Information Letter](Information Letter_2019.docx)
+Survey Instruments                   | [Information Letter](Information_Letter_2019.docx)
 &nbsp;                               | [Pre-Course Survey](Pre_Survey_2019_edit.pdf)
 &nbsp;                               | [Post-Course Survey](Post_Survey_2019_edit.pdf)
 Raw Data                             | [All Data Excel Workbook](Final.Data.Set.xlsx)
 &nbsp;                               | [CSV File for Coding](Models.csv)
 Statistics                           | [Statistical Code](ICB_SkillBuilding_CURE.Rmd)
 &nbsp;                               | [Statistical Code Output]()
+
