@@ -42,7 +42,7 @@ Following the completion of each course, data was compiled into an [excel file](
   
 Excel Tab| Content
 --------------------------- | -----------------------------------------------------
-Metadata.                | Worksheet describing survey item abbreviations for analysis and content of worksheets
+Metadata                 | Worksheet describing survey item abbreviations for analysis and content of worksheets
 F2018-Pre                | Data collected from pre-course survey in guided format (2018)
 F2018-Post               | Data collected from post-course survey in guided format (2018)
 F2019-Pre                | Data collected from pre-course survey in autonomous format (2019)
