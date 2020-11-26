@@ -21,7 +21,7 @@ Corresponding Author: aeb0084@auburn.edu
 
 &nbsp;
 
-## Quick Key to File Directory: Detailed Descriptions of file use can be found below.
+## Quick Key to File Directory
 File Type | &nbsp;
 ------------------------------------ | -----------------------------------------------------
 Survey Instruments                   | [Information Letter](Information_Letter_2019.docx)
