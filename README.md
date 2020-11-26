@@ -17,8 +17,6 @@ Corresponding Author: aeb0084@auburn.edu
 
 
 
-
-
 ### Quick Key to File Directory: Detailed Descriptions of file use can be found below.
 File Type | &nbsp;
 ------------------------------------ | -----------------------------------------------------
