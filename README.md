@@ -13,8 +13,7 @@ Corresponding Author: aeb0084@auburn.edu
 "Early exposure to course-based undergraduate research experiences (CUREs) in introductory biology courses can promote positive student outcomes, but their impacts on students in upper-level courses is less clear. Upper-level courses differ from introductory courses in several ways, and the importance of balancing structure with independence in upper-level CUREs may be essential to their efficacy. Here we analyze and discuss two formats of upper-level biology CUREs (Guided and Autonomous) that vary along a continuum between structure and independence. Reports of student perceptions of confidence, professional applicability, and CURE format indicate that Guided instruction (a more even balance between structure and independence) led to more positive impacts on student outcomes than increased independence. We discuss our results in the context of the unique elements of upper-level relative to lower-level CUREs, focusing on how structured skill-building implementation may affect those elements."
 
 ### Supplemental Figures
-![Supplemental Figure 1](SuppFig1.png)
-<img src="SuppFig1.png" width="12">
+<img src="SuppFig1.png" width="50">
 
 
 ### Quick Key to File Directory: Detailed Descriptions of file use can be found below.
