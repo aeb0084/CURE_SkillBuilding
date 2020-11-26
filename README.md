@@ -38,5 +38,20 @@ A course-based undergraduate research experience (CURE) was completed in two ite
 
 Prior to participation in the study, students were provided an [information letter](Information_Letter_2019.docx) detailing their role in the reserach. In each iteraction, students were given a [pre-course survey](Pre_Survey_2019_edit.pdf) during the first week of class measuring student confidence and perceived applicabilty of the course to their future careers. Each iteraction then completed a semester-long undergraduate research experience in collaboration with a reserach laboratory on campus, either with or in the absence of a skill-building portion. During the last week of class, students were given a [post-course survey](Post_Survey_2019_edit.pdf) which repeated all questions from the pre-course survey, and asked additional questions on student perceptions of the CURE format they were exposed to.
 
-Following the completion of each course, data was compiled into an [excel file](Final.Data.Set.xlsx) that has worksheets for each implementation, combined implementations, and data sorted by construct (perceptions of applicability, confidence, and CURE format. Data was then formatted for statistical analysis in R as a [CSV file](Models.csv). Annotated [statistical code](ICB_SkillBuilding_CURE.Rmd) was written in RMarkdown and results were written to a [PDF file](ICB_SkillBuilding_CURE.pdf).
+Following the completion of each course, data was compiled into an [excel file](Final.Data.Set.xlsx) that has worksheets for each implementation, combined implementations, and data sorted by construct (perceptions of applicability, confidence, and CURE format. 
+  
+Excel Tab| Content
+--------------------------- | -----------------------------------------------------
+1. F2018-Pre                | Data collected from pre-course survey in guided format (2018)
+2. F2018-Post               | Data collected from post-course survey in guided format (2018)
+3. F2019-Pre                | Data collected from pre-course survey in autonomous format (2019)
+4. F2019-Post               | Data collected from post-course survey in autonomous format (2019)
+5. 2018 Combined            | Pre-course and post-course data combined from guided format (2018)
+6. 2019 Combined            | Pre-course and post-course data combined from autonomous format (2019)
+7. All Data                 | Combination of guided and autonomous format data collection (2018/2019)
+8. 18.19 Confidence.App     | Combination of pre/post-course guided and autonomous format data collection (2018/2019) -confidence and applicability measures only
+9. 18.19 CURE               | Combination of post-course guided and autonomous format data collection (2018/2019) -perception of CURE measures only
+
+
+Data was then formatted for statistical analysis in R as a [CSV file](Models.csv). Annotated [statistical code](ICB_SkillBuilding_CURE.Rmd) was written in RMarkdown and results were written to a [PDF file](ICB_SkillBuilding_CURE.pdf).
 
