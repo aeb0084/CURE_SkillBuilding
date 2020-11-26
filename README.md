@@ -14,7 +14,7 @@ Corresponding Author: aeb0084@auburn.edu
 
 ### Supplemental Figures
 ![Supplemental Figure 1](SuppFig1.png)
-
+<img src="SuppFig1.png" width="12">
 
 
 ### Quick Key to File Directory: Detailed Descriptions of file use can be found below.
