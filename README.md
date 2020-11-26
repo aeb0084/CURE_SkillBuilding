@@ -25,5 +25,5 @@ Survey Instrumets                    | [Information Letter](Information Letter_2
 &nbsp;                               | [Post-Course Survey](Post_Survey_2019_edit.pdf)
 Raw Data                             | [All Data Excel Workbook](Final.Data.Set.xlsx)
 &nbsp;                               | [CSV File for Coding](Models.csv)
-Statistics                           | [Statistical Code]()
+Statistics                           | [Statistical Code](ICB_SkillBuilding_CURE.Rmd)
 &nbsp;                               | [Statistical Code Output]()
