@@ -54,5 +54,5 @@ All Data                 | Combination of guided and autonomous format data coll
 18.19 CURE               | Combination of post-course guided and autonomous format data collection (2018/2019) -perception of CURE measures only
 
 
-Data was then formatted for statistical analysis in R as a [CSV file](Models.csv). Annotated [statistical code](ICB_SkillBuilding_CURE.Rmd) was written in RMarkdown and results were written to a [PDF file](ICB_SkillBuilding_CURE.pdf).
+Data was then formatted for statistical analysis in R (version 3.5.1) as a [CSV file](Models.csv). Annotated [statistical code](ICB_SkillBuilding_CURE.Rmd) was written in RMarkdown and results were written to a [PDF file](ICB_SkillBuilding_CURE.pdf).
 
