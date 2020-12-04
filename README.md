@@ -29,7 +29,7 @@ Survey Instruments                   | [Information Letter](Information_Letter_2
 &nbsp;                               | [Post-Course Survey](Post_Survey_2019_edit.pdf)
 Raw Data                             | [All Data Excel Workbook](Final.Data.Set.12_2_20.xlsx)
 &nbsp;                               | [CSV File for Pre-Post Comparison](Models.csv)
-&nbsp;                               | [CSV File for Format Gains Comparison](Gains.csv)
+&nbsp;                               | [CSV File for Format Gains Comparison](Gains.data.csv)
 Statistics                           | [Statistical Code](ICB_SkillBuilding_CURE.Rmd)
 &nbsp;                               | [Statistical Code Output](ICB_SkillBuilding_CURE.html)
 
@@ -56,5 +56,5 @@ All Data                 | Combination of guided and autonomous format data coll
 Gains                    | Changs in Pre-Post reports between guided and autonomous format along with pre-course scores for correction
 
 
-Data was then formatted for statistical analysis in R (version 3.5.1) for pre-post course comparisons as a [CSV file](Models.csv), and course format comparisons as a separate [CSV file](Gains.csv). Annotated [statistical code](ICB_SkillBuilding_CURE.Rmd) was written in RMarkdown and results were written to a [HTML file](ICB_SkillBuilding_CURE.html). Download te HTML file for viewing.
+Data was then formatted for statistical analysis in R (version 3.5.1) for pre-post course comparisons as a [CSV file](Models.csv), and course format comparisons as a separate [CSV file](Gains.data.csv). Annotated [statistical code](ICB_SkillBuilding_CURE.Rmd) was written in RMarkdown and results were written to a [HTML file](ICB_SkillBuilding_CURE.html). Download te HTML file for viewing.
 
