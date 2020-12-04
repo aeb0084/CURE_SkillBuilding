@@ -1,0 +1,253 @@
+---
+title: "Skill-building in an upper-level biology CURE"
+author: "Abby Beatty"
+date: "December 04, 2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+#Read in packages and SE function
+```{r, echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
+#Load all packages necessary for statistical anlaysis and figure production
+library(ggplot2)
+library(multcomp)
+library(nlme)
+library(grid)
+library(Rmisc)
+library(gridExtra)
+library(emmeans)
+library(cowplot)
+
+```
+
+#Load Data
+```{r}
+#Read in data files used in anlaysis 
+#Pre vs Post Analysis
+  #This data set contains all data for both the guided and autonomous formats (confidence, applicability, and perceptions of the CURE survey constructs)
+  model=read.csv("Models.csv")
+    #Relevel course iterations to display in order of semester implementation, Guided followed by Autonomous
+    model$Experience=factor(model$Experience, levels=c("Guided", "Autonomous"))
+    #Relevel time-point to display in order of course survey implementation (pre and the post-course survey timepoints)
+    model$Time=factor(model$Time, levels=c("Pre", "Post"))
+
+#Analysis between formats
+  #Dowload data set with calculated gains (difference in pre- and post-course survey responses)
+  gains=read.csv("Gains.data.csv")
+    #Relevel Year to display in order of course iteractions (Guided in 2018 and Autonomous in 2019)
+    gains$Year=factor(gains$Year, levels=c("Guided", "Autonomous"))
+```
+
+#Pre and Post-Course Survey Comparisons: Confidence Measures 
+##Guided Format
+```{r}
+#Subset data set to include only measures of Confidence
+conf=subset(model, Skill == "Confidence")
+#Pre and post comparison in guided format
+#Subset data to isolate responses from the guided format
+conf.18=subset(conf, Experience == "Guided")
+#Remove "Abiity to identify weaknesses" question, as it was only asked in the post-course survey
+conf.18=subset(conf.18, Subskill != "Weakness")
+
+#Run linear model to compare pre and post-course student reports of confidence
+conf.18pp=lme(Score~as.factor(Time)*Subskill, random= ~1|ID, data=conf.18, na.action=na.omit)
+#Summary output
+anova(conf.18pp)
+
+#Run emmeans for pairwise comparisons between pre and post-course responses for each survey question from the confidence construct in the guided format
+confmeans18=emmeans(conf.18pp, list(pairwise ~ as.factor(Time)|Subskill), adjust = "tukey")
+confmeans18
+
+##Plot confidence survey measures based on estimated means pairwise comparisons and adjusted p-values
+plot(confmeans18, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" )
+#Explination of titles:
+  #Design= I can design an experiment from beginning to end.
+  #Notebook = I am confident in my ability to keep a well-structured lab notebook properly detailing experiments.
+  #Peform = I can perform an experiment without aid, when given a protocol.
+```
+
+#Autonomous Format
+```{r}
+#Repeat all analyses for pre and post comparison in autonomous format
+#Pre and post comparison in guided format
+#Subset data to isolate responses from the guided format
+conf.19=subset(conf, Experience == "Autonomous")
+conf.19=subset(conf.19, Subskill != "Weakness")
+
+#Run linear model to compare pre and post-course student reports of confidence
+conf.19pp=lme(Score~as.factor(Time)*Subskill, random= ~1|ID, data=conf.19, na.action=na.omit)
+#Summary output
+anova(conf.19pp)
+
+#Run emmeans for pairwise comparisons between pre and post-course responses for each survey question from the confidence construct in the guided format
+confmeans19=emmeans(conf.19pp, list(pairwise ~ Time|Subskill), adjust = "tukey")
+confmeans19
+
+##Plot confidence survey measures based on estimated means pairwise comparisons and adjusted p-values
+plot(confmeans19, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" )
+#Explination of titles:
+  #Design= I can design an experiment from beginning to end.
+  #Notebook = I am confident in my ability to keep a well-structured lab notebook properly detailing experiments.
+  #Peform = I can perform an experiment without aid, when given a protocol.
+```
+
+#Pre and Post-Course Survey Comparisons: Applicability Measures 
+##Guided Format
+```{r}
+#Subset data to include only Applicability measures
+app=subset(model, Skill == "Applicability")
+#Pre and post comparison in guided format
+#Subset data to isolate responses from the guided format
+app.18=subset(app, Experience == "Guided")
+#Remove "Abiity to identify weaknesses" question, as it was only asked in the post-course survey
+app.18=subset(app.18, Subskill != "Weakness")
+
+#run linear model to compare pre and post-course student reports of applicability
+app.18pp=lme(Score~Time*Subskill, random= ~1|ID, data=app.18, na.action=na.omit)
+#Summary report
+anova(app.18pp)
+
+#Run emmeans for pairwise comparisons between pre and post-course responses for each survey question from the applicability construct in the guided format
+appmeans18=emmeans(app.18pp, list(pairwise ~ Time|Subskill), adjust = "tukey")
+appmeans18
+##Plot applicability survey measures based on estimated means pairwise comparisons and adjusted p-values
+plot(appmeans18, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" )
+#Explination of titles:
+  #Discover= Research that I do in lab courses will lead to scientific discovery.
+  #Everyday = The practices taught in molecular biology courses are applicable in everyday life.
+  #Skills = In laboratory classes, I gain skills that will be applied in my future career.
+```
+
+##Autonomous Format
+```{r}
+#Repeat all analyses for pre and post comparison in autonomous format
+#Pre and post comparison in autonomous
+#Subset data to isolate responses from the autonomous format
+app.19=subset(app, Experience == "Autonomous")
+
+#run linear model to compare pre and post-course student reports of applicability
+app.19pp=lme(Score~Time*Subskill, random= ~1|ID, data=app.19, na.action=na.omit)
+#Summary report
+anova(app.19pp)
+
+#Run emmeans for pairwise comparisons between pre and post-course responses for each survey question from the applicability construct in the guided format
+appmeans19=emmeans(app.19pp, list(pairwise ~ Time|Subskill), adjust = "tukey")
+appmeans19
+
+##Plot applicability survey measures based on estimated means pairwise comparisons and adjusted p-values
+plot(appmeans19, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" ) 
+#Explination of titles: 
+  #Discover= Research that I do in lab courses will lead to scientific discovery.
+  #Everyday = The practices taught in molecular biology courses are applicable in everyday life.
+  #Skills = In laboratory classes, I gain skills that will be applied in my future career.
+```
+
+#Effect of Course Format on Student Perceptions: Measures of gains and post-course responses 
+##Perspectives of the CURE Measures 
+```{r}
+#Subset data to include only measures of student perception of the CURE format
+cure=subset(model, Skill == "CURE")
+
+#Run linear model for student reported scores (based on Likert-Scale reports) between experiences (guided vs autonomous) by each subskill (survey question)
+cure.lm=lm(Score~Experience*Subskill, data=cure, na.action=na.omit)
+#Summary output
+anova(cure.lm)
+#Run emmeans for pairwise comparisons between guided and autonomous formats for each survey question from the CURE format construct
+cure.means=emmeans(cure.lm, list(pairwise ~ Experience|Subskill), adjust = "tukey")
+#Print results
+cure.means
+
+#Plot CURE format survey measures based on estimated means pairwise comparisons and adjusted p-values
+plot(cure.means, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" )
+
+
+#subset only significant comparisons for publication plot
+cure.sub=subset(cure, Subskill == "Time"| Subskill == "Benefit"| Subskill == "Recommend" | Subskill == "In.engage" |Subskill == "Discovery")
+
+#Sanity Check
+#Run linear model for significant student reported scores (based on Likert-Scale reports) between experiences (guided vs autonomous) by each subskill (survey question)
+curesub.lm=lm(Score~Experience*Subskill, data=cure.sub, na.action=na.omit)
+anova(curesub.lm)
+cure.sub.means=emmeans(curesub.lm, list(pairwise ~ Experience|Subskill), adjust = "tukey")
+cure.sub.means
+
+#Plot only significant relationships for publication figure 1
+cure.plot=plot(cure.sub.means, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen", xlab="Perceptions of the CURE" )+
+  theme_bw() 
+cure.plot
+
+#Explination of titles: 
+  #Benefit = I believe students benefit from a class taught in the CURE format.
+  #Discovery = I participated in a project that will lead to scientific discovery.
+  #In.engage = The CURE curriculum allowed instructors to become more engaged with students.
+  #Recommend = I would to recommend this course to another student.
+  #Time = The CURE required more time input than traditionally taught lab courses.
+```
+
+##Confidence Measures
+```{r}
+#Subset data to include only confidence measures
+gains.con=subset(gains, Skill == "Confidence")
+
+#Run linear model testing for differences in reported gains over the course of the semester between course formats
+conf.gains.lm=(lme(Gains~Year*Subskill, data=gains.con, na.action=na.omit, random= ~1|Pre))
+
+##Run emmeans for pairwise comparisons between guided and autonomous formats for each survey question from the confidence measures
+conf.gains.means=emmeans(conf.gains.lm, list(pairwise ~ Year|Subskill), cov.keep="Year", adjust = "tukey")
+conf.gains.means
+
+##Plot emmeans adjust value gains by course format
+conf.gains.plot=plot(conf.gains.means, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" ) +
+  theme_bw()
+
+#Explination of titles:
+  #Design= I can design an experiment from beginning to end.
+  #Notebook = I am confident in my ability to keep a well-structured lab notebook properly detailing experiments.
+  #Peform = I can perform an experiment without aid, when given a protocol.
+```
+
+##Applicability Measures 
+```{r}
+#subset data to include only applicability measures
+gains.app=subset(gains, Skill == "Applicability")
+
+#Run linear model testing for differences in reported gains over the course of the semester between course formats
+app.gains.lm=(lm(Gains~Year*Subskill, data=gains.app, na.action=na.omit, random= ~1|Pre))
+
+##Run emmeans for pairwise comparisons between guided and autonomous formats for each survey question from the applicability measures
+app.gains.means=emmeans(app.gains.lm, list(pairwise ~ Year|Subskill), cov.keep="Year", adjust = "tukey")
+app.gains.means
+
+##Plot emmeans adjust value gains by course format
+app.gains.plot=plot(app.gains.means, by = "Subskill", comparisons = TRUE, horizontal = FALSE, color="darkgreen" ) +
+  theme_bw()
+#Explination of titles:
+  #Discover= Research that I do in lab courses will lead to scientific discovery.
+  #Everyday = The practices taught in molecular biology courses are applicable in everyday life.
+  #Skills = In laboratory classes, I gain skills that will be applied in my future career.
+```
+
+#Draw multi panel plot of gains
+```{r}
+#Build multi-panel plot for figure 1 of publication 
+p=ggdraw() +
+  #Applicability comparisons between formats
+  draw_plot(app.gains.plot, x = 0, y = 0.66, width = 0.6, height = .28) +
+  #Confidence comparisons between formats
+  draw_plot(conf.gains.plot, x = 0, y = .33, width = 0.6, height = .28)+
+  #Perception of CURE between formats
+  draw_plot(cure.plot, x = 0, y = 0.0, width = 1, height = 0.28) +
+  #Add panel labels to plot
+   draw_plot_label(label = c("C", "B","A"), size = 15,
+                  x = c(0, 0 ,0), y = c(0.33, 0.66,0.99)) 
+  
+#Add white space margin to figure 
+p5= p + theme(plot.margin=unit(c(15,15,15,15),"mm")) 
+
+#Save as high quality png file
+ggsave(p5, file="multipanel.gains.png", width=10, height=12, dpi=600)
+
+p5
+```
+
