@@ -27,8 +27,9 @@ File Type | &nbsp;
 Survey Instruments                   | [Information Letter](Information_Letter_2019.docx)
 &nbsp;                               | [Pre-Course Survey](Pre_Survey_2019_edit.pdf)
 &nbsp;                               | [Post-Course Survey](Post_Survey_2019_edit.pdf)
-Raw Data                             | [All Data Excel Workbook](Final.Data.Set.xlsx)
-&nbsp;                               | [CSV File for Coding](Models.csv)
+Raw Data                             | [All Data Excel Workbook](Final.Data.Set.12_2_20.xlsx)
+&nbsp;                               | [CSV File for Pre-Post Comparison](Models.csv)
+&nbsp;                               | [CSV File for Format Gains Comparison](Gains.csv)
 Statistics                           | [Statistical Code](ICB_SkillBuilding_CURE.Rmd)
 &nbsp;                               | [Statistical Code Output](ICB_SkillBuilding_CURE.html)
 
@@ -54,5 +55,5 @@ All Data                 | Combination of guided and autonomous format data coll
 18.19 CURE               | Combination of post-course guided and autonomous format data collection (2018/2019) -perception of CURE measures only
 
 
-Data was then formatted for statistical analysis in R (version 3.5.1) as a [CSV file](Models.csv). Annotated [statistical code](ICB_SkillBuilding_CURE.Rmd) was written in RMarkdown and results were written to a [HTML file](ICB_SkillBuilding_CURE.html). Download te HTML file for viewing.
+Data was then formatted for statistical analysis in R (version 3.5.1) for pre-post course comparisonsas a [CSV file](Models.csv), and course format comparisons as a separate [CSV file](Gains.csv). Annotated [statistical code](ICB_SkillBuilding_CURE.Rmd) was written in RMarkdown and results were written to a [HTML file](ICB_SkillBuilding_CURE.html). Download te HTML file for viewing.
 
