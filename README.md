@@ -30,7 +30,7 @@ Survey Instruments                   | [Information Letter](Information_Letter_2
 Raw Data                             | [All Data Excel Workbook](Final.Data.Set.xlsx)
 &nbsp;                               | [CSV File for Coding](Models.csv)
 Statistics                           | [Statistical Code](ICB_SkillBuilding_CURE.Rmd)
-&nbsp;                               | [Statistical Code Output](ICB_SkillBuilding_CURE.pdf)
+&nbsp;                               | [Statistical Code Output](ICB_SkillBuilding_CURE.html)
 
 ## Detailed Explination of Files
 
