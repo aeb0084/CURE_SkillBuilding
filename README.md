@@ -56,5 +56,5 @@ All Data                 | Combination of guided and autonomous format data coll
 Gains                    | Changs in Pre-Post reports between guided and autonomous format along with pre-course scores for correction
 
 
-Data was then formatted for statistical analysis in R (version 3.5.1) for pre-post course comparisons as a [CSV file](Models.csv), and course format comparisons as a separate [CSV file](Gains.data.csv). Annotated [statistical code](ICB_SkillBuilding_CURE.Rmd) was written in RMarkdown and results were written to a [HTML file](ICB_SkillBuilding_CURE.html). Download te HTML file for viewing.
+Data was then formatted for statistical analysis in R (version 3.5.1) for pre-post course comparisons as a [CSV file](Models.csv), and course format comparisons as a separate [CSV file](Gains.data.csv). Annotated [statistical code](ICB_SkillBuilding_CURE.Rmd) was written in RMarkdown and results were written to a [HTML file](ICB_SkillBuilding_CURE.html). Download the HTML file for viewing.
 
